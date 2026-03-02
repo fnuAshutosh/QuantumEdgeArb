@@ -80,6 +80,20 @@ This repo is editor‑agnostic and works with Gemini CLI, VS Code, Vim, or
 any terminal.  See the **Development Environment** section below for
 setup instructions and workflow.
 
+### Additional Documentation
+The `docs/` directory contains in-depth materials that developers should
+refer to:
+
+* `STRATEGY.md` – full trading logic and parameters
+* `DATA_SCHEMA.md` & `API_CONTRACTS.md` – JSON message shapes
+* `ARCHITECTURE.md` – system diagrams (flowchart, sequence, class, ER)
+* `DECISIONS.md` – architecture decision log
+* `WHITEPAPER.md` – mathematical background and rationale
+* `SETUP.md` – build and workflow instructions
+* `COST.md` – AWS free-tier cost breakdown
+
+If you edit or extend functionality, update the relevant document(s).
+
 
 ## Cost
 See [`docs/COST.md`](docs/COST.md) for a breakdown of expected
