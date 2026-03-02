@@ -1,0 +1,71 @@
+# gsd (get-shit-done) configuration for QuantumEdgeArb
+# https://github.com/gsd-build/get-shit-done
+
+commands:
+  deps:
+    desc: Install python and C++ dependencies
+    cmd: |
+      python -m pip install -r data_ingestion/coinbase/python_client/requirements.txt
+      python -m pip install -r ml_model/requirements.txt || true
+      mkdir -p build && cd build && cmake .. && make -j
+
+  build:
+    desc: Build C++ engine (debug by default)
+    cmd: |
+      mkdir -p build && cd build
+      cmake -DCMAKE_BUILD_TYPE=Debug ..
+      cmake --build .
+
+  lint:
+    desc: Run formatters and linters
+    cmd: |
+      clang-format -i $(find execution_engine/src -name '*.cpp' -or -name '*.h') || true
+      python -m pyflakes data_ingestion/ ml_model/ || true
+
+  test:
+    desc: Run unit tests
+    cmd: |
+      cd build && ctest --output-on-failure
+
+  context:
+    desc: Prepare Gemini context snapshot
+    cmd: |
+      # copy tree and prompt into .gemini or pass to CLI
+      gemini context --path . --prompt-file PROMPT.md || true
+
+  clean:
+    desc: Remove build artifacts
+    cmd: |
+      rm -rf build/*.o build/*.exe build/*.bin
+
+  ml:train:
+    desc: Train the cointegration model (stub)
+    cmd: |
+      python ml_model/src/train.py
+
+  ml:test:
+    desc: Run ml_model unit tests
+    cmd: |
+      python -m unittest discover -s ml_model/tests
+
+  exec:test:
+    desc: Run execution engine tests
+    cmd: |
+      python -m unittest discover -s execution_engine/tests
+
+  data:fetch:
+    desc: Download or stream market data
+    cmd: |
+      python data_ingestion/fetch_data.py --pair NVDA-TSM --source public
+
+  infra:apply:
+    desc: Apply terraform infrastructure
+    cmd: |
+      cd infra/terraform && terraform init && terraform apply -auto-approve
+
+  nvidia:benchmark:
+    desc: Convert NIM to TensorRT and benchmark (stub)
+    cmd: |
+      echo "Running TensorRT benchmark (not implemented)"
+
+# add extra shortcuts below as needed

@@ -1,0 +1,29 @@
+<svg width="700" height="180" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- nodes -->
+  <rect x="10" y="20" width="80" height="40" fill="#e0f7fa" stroke="#006064"/>
+  <text x="20" y="45" font-family="Arial" font-size="12">Market</text>
+  <rect x="130" y="20" width="80" height="40" fill="#fff3e0" stroke="#e65100"/>
+  <text x="140" y="45" font-family="Arial" font-size="12">Kafka</text>
+  <rect x="250" y="20" width="80" height="40" fill="#e8f5e9" stroke="#1b5e20"/>
+  <text x="260" y="45" font-family="Arial" font-size="12">Kalman</text>
+  <rect x="370" y="20" width="80" height="40" fill="#f3e5f5" stroke="#6a1b9a"/>
+  <text x="380" y="45" font-family="Arial" font-size="12">StepFunc</text>
+  <rect x="490" y="20" width="80" height="40" fill="#ffebee" stroke="#c62828"/>
+  <text x="500" y="45" font-family="Arial" font-size="12">Router</text>
+
+  <!-- paths -->
+  <path id="flow" d="M90,40 L130,40 L170,40 L250,40 L330,40 L370,40 L450,40 L490,40 L570,40" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- moving circle -->
+  <circle r="5" fill="#d50000">
+    <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+      <mpath href="#flow" />
+    </animateMotion>
+  </circle>
+</svg>

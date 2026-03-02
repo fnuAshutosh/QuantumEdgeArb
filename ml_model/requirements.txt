@@ -1,0 +1,9 @@
+torch
+numpy
+pandas
+scikit-learn
+fastapi
+uvicorn
+kafka-python
+# yfinance used by data ingestion script
+statsmodels

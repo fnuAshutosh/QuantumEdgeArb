@@ -1,71 +1,95 @@
-# QuantumEdgeArb: AI-Driven High-Frequency Trading Platform for Cross-Exchange Arbitrage  
-*A low-latency system for identifying and executing crypto arbitrage opportunities using hybrid Python/C++ architecture.*  
+﻿# QuantumEdgeArb: Bayesian Pairs Trading Proof‑of‑Concept
 
----
+A **production‑grade pairs trading engine** demonstrating modern AWS
+and NVIDIA skills.  It combines Bayesian cointegration, NeMo NIMs,
+TensorRT‑LLM optimisation, and a cloud‑native, agent‑driven architecture
+—all built on a student‑friendly, low‑cost stack.
 
-## 🎯 Problem Statement  
-High-frequency trading (HFT) firms face two critical challenges:  
-1. **Latency-Sensitive Execution**: Existing open-source tools (e.g., Backtrader) lack microsecond-level optimizations required for profitable arbitrage.  
-2. **Adaptive Signal Generation**: Traditional time-series models (e.g., ARIMA) fail to capture non-linearities in volatile crypto markets.  
 
-This project solves these by building a **hybrid Python/C++ trading engine** that combines Transformer-based price forecasting with latency-optimized order execution, achieving **<5ms end-to-end latency** while maintaining a Sharpe ratio of >2.5 in backtests.  
+## Overview
+This repository is a proof‑of‑concept for a high‑frequency arbitrage
+strategy using Kalman‑filter cointegration.  The system includes data
+ingestion (Kafka/MSK), signal generation (Kalman + NIM regime
+classifier), execution with risk guardrails, and cloud orchestration via
+Step Functions.  It is designed to showcase:
 
----
+* **AWS proficiency**: SageMaker endpoints, Terraform infrastructure,
+  Step Functions, and cost management.
+* **NVIDIA expertise**: NeMo agent toolkit, NIMs, TensorRT‑LLM tuning
+  on G5 instances.
+* **Software engineering**: hybrid C++/Python stack, automated tooling,
+  and clear documentation.
 
-## 🚀 Objectives  
-1. **Latency Reduction**: Optimize order parsing/execution to <5ms using C++ Boost.Asio.  
-2. **Predictive Accuracy**: Train a Transformer model to outperform LSTMs by 15% in directional accuracy.  
-3. **Scalability**: Deploy on AWS EC2 UltraClusters with Kubernetes for horizontal scaling.  
-4. **Risk-Aware Execution**: Integrate slippage and partial-fill modeling into Smart Order Routing (SOR).  
 
----
-
-## 🛠️ Tools & Technologies  
-| **Category**       | **Tools**                                                                 |  
-|---------------------|--------------------------------------------------------------------------|  
-| **Languages**       | Python (PyTorch, FastAPI), C++17 (Boost.Asio)                           |  
-| **Data Pipeline**   | Binance/Coinbase WebSocket APIs, Apache Kafka, Protocol Buffers (serialization) |  
-| **ML/Backtesting**  | PyTorch (Transformer), LightGBM, MLflow, VectorBT                       |  
-| **Infrastructure**  | Docker, Kubernetes, AWS EC2 (EFA-enabled), Prometheus/Grafana           |  
-| **Optimization**    | CUDA, ONNX Runtime, Intel IPP (C++ math kernels)                        |  
-
----
-
-## 🏗️ Architecture  
-![System Architecture](docs/architecture.png) *[Placeholder: Add a Mermaid.js/Excalidraw diagram]*  
-
-1. **Data Ingestion Layer**:  
-   - WebSocket clients (C++) stream order book data from exchanges.  
-   - Apache Kafka buffers real-time data for fault tolerance.  
-
-2. **Signal Generation Layer**:  
-   - Transformer model (PyTorch) predicts 1-second price movements.  
-   - PCA reduces feature dimensionality (leveraging eigenvalue optimization from past projects).  
-
-3. **Execution Layer**:  
-   - C++ order router with risk constraints (max drawdown, position sizing).  
-   - Integration with exchange APIs via REST/WebSocket.  
-
-4. **Monitoring & DevOps**:  
-   - Kubernetes-managed Docker containers on AWS.  
-   - Prometheus alerts for latency spikes or model drift.  
-
----
-
-## 📂 Project Structure  
+## Install
 ```bash
-quantum-edge-arb/  
-├── data_ingestion/     # C++ WebSocket clients, Kafka producers  
-│   ├── binance/        # Exchange-specific adapters  
-│   └── coinbase/  
-├── ml_model/           # Transformer training, quantization, and deployment  
-│   ├── train.py        # PyTorch training loop  
-│   └── deploy/         # FastAPI inference server  
-├── execution_engine/   # C++ order router, risk management  
-│   ├── src/            # Boost.Asio networking  
-│   └── tests/          # GoogleTest benchmarks  
-├── infra/              # Terraform/IaC for AWS, Kubernetes manifests  
-├── benchmarks/         # Latency vs. profitability reports  
-│   ├── backtests/      # VectorBT notebooks  
-│   └── chaos/          # Network failure simulations  
-└── docs/               # Architecture diagrams, WhitePaper  
+git clone https://your.repo.url/QuantumEdgeArb.git
+cd QuantumEdgeArb
+# install either Python or npm helper
+pip install gsd           # or `npx get-shit-done-cc@latest`
+
+gsd deps                  # build dependencies and Python packages
+```
+
+
+## Usage
+Run the built-in tasks to exercise various components:
+
+```bash
+gsd data:fetch            # download or stream sample market data
+gsd ml:train              # train the Kalman/co-integr model (stub)
+gsd ml:test               # run unit tests for ml_model
+gsd exec:test             # run execution engine unit tests
+gsd nvidia:benchmark      # convert NIM to TensorRT and measure latency
+gsd infra:apply           # terraform apply (MSK, SageMaker, StepFunctions)
+``` 
+
+Open the folder in VS Code to auto-trigger the `gsd context` task and
+use keybindings (Ctrl+Alt+B/T/C) for build/test/context.
+
+
+## Project Structure
+```bash
+quantum-edge-arb/
+├── data_ingestion/     # Kafka producers, tick fetchers
+│   ├── binance/        # exchange adapters (empty stubs)
+│   └── coinbase/
+├── ml_model/           # cointegration, NIM classifier, training
+│   ├── train.py
+│   ├── cointegration.py
+│   └── nemo_classifier.py
+├── execution_engine/   # order router, risk logic (C++/Python)
+│   ├── src/            # Boost.Asio networking (stubs)
+│   └── tests/          # GoogleTest benchmarks
+├── infra/              # Terraform/IaC for AWS services
+├── benchmarks/         # VectorBT notebooks and backtests
+└── docs/               # Architecture diagrams, whitepaper, cost
+```
+
+
+## Demonstrates
+* AWS SageMaker model endpoints
+* Terraform infrastructure (MSK, Step Functions)
+* NVIDIA NIM/NeMo agent and TensorRT‑LLM optimization
+* Agentic risk guardrails with Kill Switch
+* Cost‑aware, free‑tier deployment suitable for students
+
+
+## Development Environment & Vibe‑Coding
+This repo is editor‑agnostic and works with Gemini CLI, VS Code, Vim, or
+any terminal.  See the **Development Environment** section below for
+setup instructions and workflow.
+
+
+## Cost
+See [`docs/COST.md`](docs/COST.md) for a breakdown of expected
+expenses when using AWS free‑tier and spot GPU credits.
+
+
+## Contributing
+See [`docs/SETUP.md`](docs/SETUP.md) for detailed setup steps and
+contribution guidelines.
+
+
+## License
+MIT
