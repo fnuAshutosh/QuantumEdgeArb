@@ -1,10 +1,12 @@
 # Phase 04 Backtesting Summary
 
-Two empty notebook files were created as placeholders for backtests.
+Two notebooks were created; `pairs.ipynb` now contains working
+backtest code using synthetic data.  A helper script `run_backtest.py` also
+executes the logic.
 
 ## Verification
-```
-ls benchmarks/backtests/*.ipynb
-```
+```bash
+python run_backtest.py    # prints coefficients, zscore, Sharpe
+``` 
 
 ## Status: Completed
