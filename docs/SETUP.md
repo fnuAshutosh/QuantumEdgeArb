@@ -65,6 +65,28 @@ gsd data:fetch
 python data_ingestion/fetch_data.py --pair NVDA-TSM --source yfinance
 ```
 
+### Environment variables
+Before running the system create a `.env` file from `.env.example` at the
+root and fill in AWS/ Kafka/ NIM credentials.  The Python modules use
+`os.getenv` to read these values.
+
+### Planning and roadmap
+The project uses a lightweight phase/plan system under `.planning/`.
+Phase descriptions and stub plans exist for Phases 01–05; expand them as
+you implement features.  Run `/gsd plan-phase` inside Copilot to generate
+new plans interactively.
+
+### Environment variables
+Before running the system create a `.env` file from `.env.example` at the
+root and fill in AWS/Kafka/NIM credentials. The Python modules use
+`os.getenv` to read these values.
+
+### Planning and roadmap
+The project maintains a simple roadmap under `.planning/` with phases 01–05.
+Each phase has a `*-PLAN.md` describing tasks; update or add plans as you
+develop. In a Copilot‑powered editor invoke `/gsd plan-phase` to create or
+edit a plan interactively.
+
 ### Adding new tools
 If you prefer `make`, `just`, or `taskfile`, feel free to replicate the
 commands from `gsd.yml`. The important part is that all contributors
