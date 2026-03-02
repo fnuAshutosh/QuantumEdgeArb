@@ -1,0 +1,8 @@
+numpy
+pandas
+scipy
+statsmodels
+fastapi
+uvicorn
+requests
+pytest
