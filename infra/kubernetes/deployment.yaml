@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: placeholder
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: placeholder
+    spec:
+      containers:
+      - name: placeholder
+        image: nginx:latest
+        ports:
+        - containerPort: 80
