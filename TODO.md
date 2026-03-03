@@ -3,7 +3,7 @@
 This file collects actionable items to avoid forgetting details.  It mirrors
 the Phase 07 plan in `.planning` and other outstanding work.
 
-- [ ] Implement `data_ingestion/kafka_producer.py` with KafkaProducer class
+- [x] Implement `data_ingestion/kafka_producer.py` with KafkaProducer class
 - [ ] Enhance `data_ingestion/fetch_data.py` to support `--to-kafka` and real
       data sources
 - [ ] Add environment variable docs for Kafka in `.env.example`
